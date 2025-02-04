@@ -17,7 +17,7 @@ console.log(copied)
 
 const rest = (...args) => {
     if(args.length % 2 !== 0) {
-        console.log(Math.pow(args))
+        console.log(args)
     }
 }
-console.log(rest([1,2,3,43,45,6]))
+console.log(rest([1,2,3,43]))
