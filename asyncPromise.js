@@ -2,4 +2,4 @@ setTimeout(() => {
     resolve("this is it")
 }, 2000);
 
-c
+console.log("sup slut")

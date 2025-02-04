@@ -16,8 +16,7 @@ const copied = {...object}
 console.log(copied)
 
 const rest = (...args) => {
-    if(args.length % 2 !== 0) {
-        console.log(args)
-    }
+   return args
+    
 }
 console.log(rest([1,2,3,43]))
