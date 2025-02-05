@@ -6,7 +6,7 @@ const fs = require('fs')
 const server = http.createServer((req, res) => {
 
 
-    //parsing the url
+    //parsing the url and the method.
     const url = req.url
     const method = req.method
     //returns a response that gives the user an input form and a button that 
