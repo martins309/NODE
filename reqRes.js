@@ -21,16 +21,26 @@ const server = http.createServer((req, res) => {
     }
     //when the user submits their information "POST", it will write and file on the server
     //check out res.writeHead()
-    
+
     //streams are ongoing process and the requests are read in chunks
     //you can work on the individual chunks without waiting for the entire request to load
+    //buffers is how you organize the chunks
+    //constructs that allow you to hold chunks to work with them before they are released 
+
+
 
 if(url === '/message' && method === 'POST'){
-     
     
+    //req.on allows you to listen to events
+    //push chunks to the end array (req body)
+    const body = []
     req.on('data', (chunk) => {
-
-
+        body.push(chunk)
+        console.log(chunk)
+    })
+    //fired once done firing the req data
+    req.on('end', () => {
+        const parsedBody = Buffer.concat(body).toString()
     })
 
     fs.writeFileSync('message.txt', "Lookat me")
