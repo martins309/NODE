@@ -21,7 +21,18 @@ const server = http.createServer((req, res) => {
     }
     //when the user submits their information "POST", it will write and file on the server
     //check out res.writeHead()
+    
+    //streams are ongoing process and the requests are read in chunks
+    //you can work on the individual chunks without waiting for the entire request to load
+
 if(url === '/message' && method === 'POST'){
+     
+    
+    req.on('data', (chunk) => {
+
+
+    })
+
     fs.writeFileSync('message.txt', "Lookat me")
         res.statusCode = 302
         res.setHeader('Location', '/')
