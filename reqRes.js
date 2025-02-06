@@ -1,5 +1,6 @@
 const http = require('http')
 const fs = require('fs')
+const { PassThrough } = require('stream')
 
 
 //creating a web server that has a different response depending on the url
@@ -38,9 +39,18 @@ if(url === '/message' && method === 'POST'){
         body.push(chunk)
         console.log(chunk)
     })
-    //fired once done firing the req data
+    //fired once done parsing the incoming request
+    //the chunks are read and stored in the body
+    // this is how the chunk is read
+
+
     req.on('end', () => {
+        //creates new buffer and adds all the chunks from inside the body to it
+        //converted the data to string because we know that the output is a string
+
+
         const parsedBody = Buffer.concat(body).toString()
+        console.log(parsedBody)
     })
 
     fs.writeFileSync('message.txt', "Lookat me")
