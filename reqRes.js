@@ -8,7 +8,7 @@ const server = http.createServer((req, res) => {
     if (url === '/') {
         res.write('<html>');
         res.write('<head><title>Enter Message</title></head>');
-        res.write('<body><form action="/message" method="POST"><input type="text" name="message"><button type="submit">Send It</button></form></body>');
+        res.write('<body><form action="/message" method="POST"><textarea name="message"></textarea><button type="submit">Send It</button></form></body>');
         res.write('</html>');
         return res.end();
     }
@@ -17,10 +17,17 @@ const server = http.createServer((req, res) => {
         const body = [];
 
         req.on('data', (chunk) => {
+            console.log("this is the chunk hoe:", chunk)
+            console.log("this is  from the string method", chunk.toString())
             body.push(chunk);
         });
 
         req.on('end', () => {
+            console.log("data transmission ended")
+            if(body.length === 0) {
+                console.log("aint shit here")
+            }
+
             const parsedBody = Buffer.concat(body).toString();
             console.log('Parsed body:', parsedBody); // Debugging line to check the received data
 
